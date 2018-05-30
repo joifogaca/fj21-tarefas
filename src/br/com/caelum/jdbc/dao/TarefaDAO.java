@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import br.com.caelum.jdbc.ConnectionFactory;
 import br.com.caelum.jdbc.modelo.Tarefa;
 
 public class TarefaDAO {
@@ -16,13 +17,29 @@ public class TarefaDAO {
 	
 private Connection connection;
 	
-	public TarefaDAO(Connection conn) {
+	public TarefaDAO() throws ClassNotFoundException {
 		
-			this.connection = conn;
+		this.connection = new ConnectionFactory().getConnection();
 	}
 	
 	public void adciona(Tarefa tarifa){
-		String sql = "insert into tarifas "+
+		String sql = "insert into tarefas "+
+				"(descricao)" +
+				"values(?)";
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			stmt.setString(1, tarifa.getDescricao());
+
+			stmt.execute();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+		/*String sql = "insert into tarefas "+
 				"(descricao, finalizado, dataFinalizacao)" +
 				"values(?,?,?)";
 		
@@ -38,7 +55,7 @@ private Connection connection;
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}
+		}*/
 	}
 
 	public List<Tarefa> getLista(){

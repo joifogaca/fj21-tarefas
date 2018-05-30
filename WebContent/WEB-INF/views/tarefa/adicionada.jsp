@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,11 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>Adcionar tarefas</h3>
-	<form action="adcionaTarefa" method="post">
-		Descrição: <br />
-		<textarea name="descricao" rows="5" cols="100"></textarea>
-		<input type="submit" value="Adcionar">
-	</form>
+	Nova tarefa adicionada com sucesso!
 </body>
 </html>
